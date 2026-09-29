@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MY ELECTRO — прайс и сметы</title>
+<meta name="theme-color" content="#0d0f10">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#0d0f10;--panel:#171a1d;--panel2:#202429;--text:#f5f5f5;--muted:#aeb4ba;--accent:#f4c400;--line:#343a40;--blue:#2478e8;--green:#27c45a;--danger:#df4d4d}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+.app{display:flex;min-height:100vh}.side{width:245px;background:#151719;border-right:1px solid var(--line);padding:18px 12px;position:fixed;inset:0 auto 0 0;z-index:5}
+.logo{font-weight:900;font-size:21px;padding:8px 12px 22px}.bolt{color:var(--accent);font-size:28px}
+.nav button{width:100%;background:none;border:0;color:#ddd;text-align:left;padding:12px 14px;border-radius:9px;font-size:15px;cursor:pointer;margin:2px 0}.nav button:hover,.nav button.active{background:#2a2e32;color:#fff}.nav button.active{border-left:4px solid var(--accent)}
+.main{margin-left:245px;width:calc(100% - 245px);padding:24px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.top h1{margin:0;font-size:28px}.badge{background:#2b2f33;padding:8px 12px;border-radius:20px;color:#ddd}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.stat{font-size:29px;font-weight:900;margin-top:8px}.muted{color:var(--muted);font-size:13px}
+.hero{background:linear-gradient(135deg,#1a1d20,#2a2f34);border-radius:18px;padding:28px;margin-bottom:18px;border:1px solid #383e44}.hero h2{font-size:35px;margin:0 0 8px}.accent{color:var(--accent)}
+.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--accent);font-weight:800;cursor:pointer}.btn.blue{background:var(--blue);color:#fff}.btn.green{background:var(--green);color:#fff}.btn.secondary{background:#30353a;color:#fff}.btn.danger{background:var(--danger);color:#fff}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.search,input,select,textarea{width:100%;background:#101214;border:1px solid #3a4147;color:#fff;border-radius:8px;padding:11px}input[type=number]{max-width:150px}
+.table{width:100%;border-collapse:collapse;margin-top:14px}.table th,.table td{padding:11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}.table th{color:#aaa;font-size:12px}
+.catgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.cat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;cursor:pointer}.cat:hover{border-color:#777}.cat b{display:block;margin-bottom:7px}
+.total{font-size:24px;font-weight:900;text-align:right;margin-top:15px}.empty{padding:35px;text-align:center;color:#999;background:var(--panel);border-radius:12px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.section-title{font-size:20px;font-weight:900}.price-item{display:grid;grid-template-columns:minmax(0,1fr) 65px 100px 150px auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.price-item:last-child{border-bottom:0}
+.qty-control{display:flex;align-items:center;gap:5px}.qty-btn{width:28px;height:28px;min-width:28px;padding:0;border:1px solid #4b535b;background:#292e33;color:#fff;border-radius:6px;font-size:16px;line-height:26px;font-weight:800;cursor:pointer;touch-action:manipulation;display:inline-flex;align-items:center;justify-content:center}.qty-number{width:38px!important;min-width:38px;text-align:center;padding:5px 2px!important;font-weight:800;height:28px!important;border-radius:6px}.editor-section{margin-bottom:14px}.editor-service{display:grid;grid-template-columns:1fr 90px 120px auto;gap:8px;align-items:center;margin-top:8px}.hint{padding:12px;border:1px dashed #4b535b;border-radius:10px;color:var(--muted);margin-top:12px}
+@media(max-width:900px){.side{width:72px;padding:12px 8px}.logo{font-size:0;text-align:center}.logo .bolt{font-size:28px}.nav button{font-size:0;text-align:center;padding:13px}.nav button:first-letter{font-size:18px}.main{margin-left:72px;width:calc(100% - 72px);padding:15px}.grid{grid-template-columns:repeat(2,1fr)}.catgrid{grid-template-columns:1fr 1fr}.hero h2{font-size:27px}}
+@media(max-width:600px){
+.grid,.catgrid,.row{grid-template-columns:1fr}.top h1{font-size:22px}.main{padding:10px 10px 82px}.badge{display:none}
+.side{width:100%;height:64px;bottom:0;top:auto;left:0;right:0;padding:6px 4px;border-right:0;border-top:1px solid var(--line);display:flex;align-items:center;z-index:20}.logo{display:none}.nav{display:grid!important;grid-template-columns:repeat(4,1fr);width:100%;gap:2px}.nav button{font-size:10px!important;text-align:center!important;padding:7px 2px!important;margin:0!important;border-left:0!important;border-radius:8px;line-height:1.1}.nav button:first-letter{font-size:20px}.nav button.active{border-left:0;border-top:3px solid var(--accent);padding-top:4px!important}
+.hero{padding:20px}.hero h2{font-size:28px}.card{padding:14px}.cat{padding:16px;min-height:54px}.cat b{font-size:15px}.actions .search{max-width:none!important}
+.price-item{grid-template-columns:1fr auto;gap:8px;padding:15px 0}.price-item>div:nth-child(2){font-size:12px;color:var(--muted)}.price-item>div:nth-child(3){font-weight:800}.price-item>div:nth-child(4){grid-column:1/-1}.price-item .item-actions{grid-column:auto;grid-row:1 / span 2;align-self:center}.price-item .qty-control{justify-content:flex-start}.qty-btn{width:40px;height:40px}.qty-number{width:52px!important;height:40px}
+.editor-service{grid-template-columns:1fr 80px 105px}.editor-service .item-actions{grid-column:1/-1}.table{font-size:13px;min-width:760px}.table th:nth-child(1),.table td:nth-child(1){display:none}.table input[type=number]{max-width:80px}.estimate-qty{display:inline-flex;align-items:center;gap:5px}.print-qty{display:none}
+}
+
+/* MY ELECTRO — mobile app polish */
+@media(max-width:600px){
+  body{font-size:14px;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+  .app{min-height:100dvh}
+  .main{padding:10px 10px 88px;max-width:none;width:100%;margin:0}
+  .top{position:sticky;top:0;z-index:10;margin:-10px -10px 12px;padding:12px 14px;background:rgba(13,15,16,.96);border-bottom:1px solid #292e33;backdrop-filter:blur(10px)}
+  .top h1{font-size:20px;font-weight:900}
+  .card{border-radius:16px;padding:14px;box-shadow:0 5px 18px rgba(0,0,0,.16)}
+  .hero{border-radius:18px;padding:22px 18px;margin-bottom:12px}
+  .hero h2{font-size:26px;line-height:1.15}
+  .hero .btn{width:100%;margin-top:8px;min-height:46px}
+  .grid{gap:10px}
+  .grid .card{min-height:92px}
+  .stat{font-size:26px}
+  .actions{gap:8px}
+  .actions .btn{min-height:42px}
+  .search,input,select,textarea{font-size:16px;min-height:44px}
+  .catgrid{gap:9px;margin-top:10px}
+  .cat{min-height:76px;padding:14px;border-radius:14px;display:flex;flex-direction:column;justify-content:center}
+  .section-head{align-items:flex-start}
+  .section-title{font-size:18px}
+  .price-item{padding:13px 0;grid-template-columns:minmax(0,1fr) auto;gap:5px 8px}
+  .price-item>div:first-child b{font-size:14px;line-height:1.3;display:block}
+  .price-item>div:nth-child(3){font-size:14px}
+  .price-item .item-actions{grid-column:2;grid-row:1 / span 2}
+  .qty-control{justify-content:flex-end}
+  .qty-btn{width:30px;height:30px;min-width:30px;border-radius:8px;font-size:16px}
+  .qty-number{width:38px!important;min-width:38px;height:30px!important;font-size:14px}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px}
+  .estimate-table{min-width:720px}
+  .estimate-table th,.estimate-table td{padding:8px}
+  .estimate-total{font-size:21px}
+  .auth-screen{min-height:calc(100dvh - 70px);padding:12px}
+  .auth-card{padding:24px 18px;border-radius:20px}
+  .auth-btn{min-height:48px}
+  .side{height:70px;padding:5px 3px;box-shadow:0 -8px 24px rgba(0,0,0,.22)}
+  .nav{grid-template-columns:repeat(6,1fr)!important;gap:1px}
+  .nav button{font-size:9px!important;min-width:0;height:60px;padding:5px 1px!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;white-space:nowrap;overflow:hidden}
+  .nav button:first-letter{font-size:19px}
+  .nav button.active{border-top:2px solid var(--accent);background:#202428;padding-top:3px!important}
+}
+
+@media print{.side,.top,.no-print{display:none!important}.main{margin:0;width:100%;padding:0}.card{break-inside:avoid;background:#fff;color:#000;border-color:#ddd}.muted{color:#555}.print-only{display:block!important}.estimate-print-head{text-align:center;margin-bottom:18px}.estimate-print-head h2{margin:0 0 5px}.estimate-print-head p{margin:0}.estimate-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;padding:10px;border:1px solid #ccc}.estimate-table{width:100%;border-collapse:collapse}.estimate-table th,.estimate-table td{border:1px solid #999;padding:8px;text-align:left}.estimate-table th{font-weight:700}.estimate-table td:nth-child(1),.estimate-table td:nth-child(4),.estimate-table td:nth-child(5){text-align:center}.estimate-total{margin-top:14px;text-align:right;font-size:20px;font-weight:800}.table-wrap{overflow:visible}.print-estimate{box-shadow:none!important}.print-only{display:none}.print-qty{display:inline}.estimate-qty{display:none}}
+@media(max-width:600px){.qty-control{gap:4px}.qty-btn{width:26px;height:26px;min-width:26px;font-size:15px;line-height:24px}.qty-number{width:36px!important;min-width:36px;height:26px!important;padding:3px 1px!important;font-size:14px}}
+
+.estimate-delete{width:28px;height:28px;border:1px solid #ddd;border-radius:7px;background:#fff;color:#d33;font-size:18px;line-height:1;cursor:pointer;padding:0}.estimate-delete:hover{background:#fff0f0}
+
+.auth-screen{min-height:calc(100vh - 100px);display:flex;align-items:center;justify-content:center;padding:20px}.auth-card{width:min(420px,100%);background:#17191b;border:1px solid #343a40;border-radius:18px;padding:28px;box-sizing:border-box;text-align:center}.auth-card h2{margin:0 0 10px;font-size:28px}.auth-card .muted{margin-bottom:22px}.auth-input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;border:1px solid #3d4247;background:#101214;color:#fff;font-size:16px;outline:none;margin-bottom:12px}.auth-input:focus{border-color:#f4c400}.auth-btn{width:100%;padding:13px;border:0;border-radius:10px;background:#f4c400;color:#111;font-weight:800;font-size:16px;cursor:pointer}.welcome-name{color:#f4c400}.account-bar{display:flex;align-items:center;gap:10px}.logout-btn{border:1px solid #444;background:transparent;color:#aaa;border-radius:8px;padding:7px 10px;cursor:pointer}.logout-btn:hover{color:#fff}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="logo"><span class="bolt">⚡</span> MY ELECTRO</div>
+  <nav class="nav" id="nav"></nav>
+</aside>
+<main class="main">
+  <div class="top"><h1 id="title"></h1><span class="badge">ПРАЙС • СМЕТЫ</span></div>
+  <section id="content"></section>
+</main>
+</div>
+<script>
+const KEY="murad_price_v2";
+const estimateKey="murad_estimate";
+const accountKey="my_electro_account";
+const initialPrice=[
+  {name:"Электромонтажные работы",items:[["Установка розетки","шт",350],["Установка выключателя","шт",300],["Монтаж точки освещения","шт",500],["Монтаж распределительной коробки","шт",700]]},
+  {name:"Кабельная продукция",items:[["ВВГ 3×1,5","м",65],["ВВГ 3×2,5","м",95],["ВВГ 3×4","м",145],["ВВГ 3×6","м",210],["ПВС 3×1,5","м",60],["ПВС 3×2,5","м",90],["NYM 3×2,5","м",120],["NYM 3×4","м",170],["ШВВП 2×0,75","м",40],["КГ 3×1,5","м",85]]},
+  {name:"Розетки и выключатели",items:[["Розетка Schneider","шт",350],["Выключатель Schneider","шт",320],["Розетка влагозащищённая","шт",650]]},
+  {name:"Автоматы и УЗО",items:[["Автомат 16А","шт",450],["Автомат 25А","шт",480],["УЗО 40А 30мА","шт",1850]]},
+  {name:"Светотехника",items:[["Установка люстры","шт",1200],["Установка бра","шт",700],["Установка точечного светильника","шт",450]]},
+  {name:"Установочные изделия",items:[]},{name:"Материалы для монтажа",items:[]},{name:"Инструменты",items:[]},
+  {name:"Дополнительные услуги",items:[]},{name:"Слаботочные системы",items:[]},{name:"Освещение участка",items:[]},{name:"Тёплый пол",items:[]},
+  {name:"Вентиляция",items:[]},
+  {name:"Установка вентиляторов",items:[["Вытяжной (вентилятор)","шт",2000],["Канальный (вентилятор)","шт",2500]]},
+  {name:"Монтаж тёплого пола",items:[["Монтаж тёплого пола","м²",1500],["Термодатчик (тёплый пол)","шт",1000]]},
+  {name:"Монтаж кабель-канала",items:[["Распил угла (кабель-канал)","шт",150],["Кабель-канал 16×25","п/м",150],["Кабель-канал 40×60","п/м",180],["Кабель-канал 60×100","п/м",200],["Угол, тройник, подрозетник","шт",150]]},
+  {name:"Монтаж кабель-канала по потолку",items:[["Распил угла (кабель-канал по потолку)","шт",170],["Кабель-канал 16×25 (по потолку)","п/м",170],["Кабель-канал 40×60 (по потолку)","п/м",200],["Кабель-канал 60×100 (по потолку)","п/м",250]]},
+  {name:"Заземление",items:[["Монтаж вертикального заземлителя Ø 18 мм","п/м",1500],["Монтаж полосовой стали 40×4","п/м",1000],["Монтаж заземлительного колодца Ø 110 мм","шт",1000],["Монтаж модульного заземлителя 6 м","шт",15000]]},
+  {name:"Земляные работы",items:[["Песок","п/м",300],["Земля","п/м",500],["Грунт каменистый","п/м",1000],["Асфальт","п/м",1500],["Бетон","п/м",200],["Измерение сопротивления контура заземления","шт",3000]]},
+  {name:"Установка, ремонт и обслуживание стабилизаторов",items:[["Плановое обслуживание (профилактика стабилизатора)","шт",3000],["Установка стабилизатора до 10 кВт","шт",3500],["Установка стабилизатора на кронштейны до 10 кВт","шт",5000],["Установка стабилизатора до 30 кВт","шт",5000],["Ремонт (стабилизатора) с выездом спец-та на место (1500–5000)","шт",7000]]},
+  {name:"Монтаж лотков",items:[["Лоток металлический ширина до 200 мм (с заводскими поворотами и подъёмами включительно)","п/м",300],["Лоток металлический ширина до 400 мм (с заводскими поворотами и подъёмами включительно)","п/м",500],["Лоток металлический ширина до 600 мм (с заводскими поворотами и подъёмами включительно)","п/м",800],["Установка кронштейна для лотка","шт",350],["Монтаж (шпильки, троса)","шт",400]]},
+  {name:"СИП монтаж",items:[["СИП 2× жильный до 25го (включительно)","п/м",250],["СИП 4× жильный до 25го (включительно)","п/м",350],["СИП 4× жильный 35й и выше по цене кабеля","п/м",0],["Затяжка в гофру 2× жильный","п/м",150],["Затяжка в гофру 4× жильный","п/м",180],["Опрессовка наконечников с подк. (до 50 сечения 1 жила)","шт",600],["Опрессовка наконечников с подк. (до 90 сечения 1 жила)","шт",800],["Крепёж для натяжителя","шт",400],["Орешек СИП 1 шт","шт",500],["Орешек АС1 шт","шт",1000],["Опора h11м (траверса, изоляторы и пролёт)","шт",18000],["Установка разъединителя","шт",20000],["Замена изолятора на траверсе","шт",5000]]},
+  {name:"Муфты (бронь сшитый полиэтилен)",items:[["Муфта По низкой стороне до 95 мм² (бронь +25%)","шт",5000],["Муфта По низкой стороне до 300 мм² (бронь +25%)","шт",9000],["Муфта По высокой стороне","шт",12000],["Муфта Переключение Анцапы","шт",6000]]}
+];
+let price=loadPrice();
+let account=JSON.parse(localStorage.getItem(accountKey)||"null");
+function ensureAccount(){
+  if(!account)return;
+  if(!account.id){
+    account.id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("acc_"+Date.now()+"_"+Math.random().toString(36).slice(2));
+    const old=localStorage.getItem(estimateKey);
+    if(old && !localStorage.getItem("my_electro_estimate_"+account.id)) localStorage.setItem("my_electro_estimate_"+account.id,old);
+    localStorage.removeItem(estimateKey);
+    saveAccount();
+  }
+}
+ensureAccount();
+function userEstimateKey(){return account?"my_electro_estimate_"+account.id:estimateKey}
+function userDataKey(){return account?"my_electro_data_"+account.id:"my_electro_data_guest"}
+function loadEstimate(){try{const saved=JSON.parse(localStorage.getItem(userEstimateKey())||"[]");return Array.isArray(saved)?saved:[]}catch(e){return []}}
+let estimate=loadEstimate();
+let current="Главная", currentCat=null;
+
+const navItems=[["🏠","Главная"],["💰","Прайс"],["🧮","Калькулятор"],["📋","Сметы и заказы"],["✅","Чек-лист"],["🛠️","Управление прайсом"]];
+document.getElementById("nav").innerHTML=navItems.map(x=>`<button onclick="go('${x[1]}')" id="n-${x[1]}">${x[0]} &nbsp; ${x[1]}</button>`).join("");
+
+function saveAccount(){localStorage.setItem(accountKey,JSON.stringify(account));}
+function showAuth(c){
+ c.innerHTML=`<div class="auth-screen"><div class="auth-card"><div style="font-size:42px">⚡</div><h2>MY ELECTRO</h2><p class="muted">Введите своё имя, чтобы создать аккаунт и начать работу.</p><input id="accountName" class="auth-input" maxlength="40" placeholder="Ваше имя" autocomplete="name"><button class="auth-btn" onclick="createAccount()">Создать аккаунт</button></div></div>`;
+ const input=document.getElementById("accountName"); if(input)input.addEventListener("keydown",e=>{if(e.key==='Enter')createAccount()});
+}
+function createAccount(){const el=document.getElementById("accountName");const name=(el?.value||"").trim();if(!name){alert("Введите имя");return}account={name:name,id:(window.crypto&&crypto.randomUUID)?crypto.randomUUID():("acc_"+Date.now()+"_"+Math.random().toString(36).slice(2))};saveAccount();estimate=loadEstimate();go("Главная");}
+function logout(){if(!confirm("Выйти из аккаунта?"))return;saveEstimate();account=null;localStorage.removeItem(accountKey);estimate=[];render();}
+function loadPrice(){
+  try{const saved=JSON.parse(localStorage.getItem(KEY)); if(Array.isArray(saved)&&saved.length)return saved}catch(e){}
+  const copy=JSON.parse(JSON.stringify(initialPrice)); localStorage.setItem(KEY,JSON.stringify(copy)); return copy;
+}
+function savePrice(){localStorage.setItem(KEY,JSON.stringify(price))}
+function saveEstimate(){localStorage.setItem(userEstimateKey(),JSON.stringify(estimate))}
+function go(page){current=page;currentCat=null;document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));document.getElementById("n-"+page).classList.add("active");render()}
+function render(){document.getElementById("title").textContent=current;const c=document.getElementById("content");
+ if(current==="Главная")return home(c); if(current==="Прайс")return pricePage(c); if(current==="Калькулятор")return calc(c);
+ if(current==="Сметы и заказы")return orders(c);
+ if(current==="Чек-лист")return checklist(c); if(current==="Управление прайсом")return editor(c);
+}
+function home(c){
+ if(!account){return showAuth(c)}
+ const count=price.reduce((s,x)=>s+x.items.length,0);
+ c.innerHTML=`<div class="hero"><h2>Добро пожаловать,<br><span class="accent welcome-name">${esc(account.name)}!</span></h2><p class="muted">Прайс, калькулятор и сметы в одном месте.</p><button class="btn" onclick="go('Прайс')">Открыть прайс →</button><div style="margin-top:18px"><button class="logout-btn" onclick="logout()">Выйти из аккаунта</button></div></div>
+ <div class="grid"><div class="card"><div class="muted">Разделов</div><div class="stat">${price.length}</div></div><div class="card"><div class="muted">Позиций прайса</div><div class="stat">${count}</div></div><div class="card"><div class="muted">Позиций в смете</div><div class="stat">${estimate.length}</div></div><div class="card"><div class="muted">Сохранение</div><div class="stat">✓</div></div></div>
+ <div class="card" style="margin-top:15px"><h3>Новый редактор прайса</h3><p class="muted">Можно самостоятельно добавлять разделы и услуги, менять цены и единицы измерения. Изменения сохраняются в браузере.</p><button class="btn blue" onclick="go('Управление прайсом')">Управлять прайсом</button></div>`;
+}
+function pricePage(c){
+ if(currentCat!==null)return items(c);
+ c.innerHTML=`<div class="actions no-print"><input class="search" style="max-width:500px" placeholder="Поиск по разделам..." oninput="filterCats(this.value)"><button class="btn blue" onclick="go('Управление прайсом')">🛠️ Редактировать прайс</button></div>
+ <div class="catgrid" id="cats">${price.map((x,i)=>`<div class="cat" data-name="${esc(x.name).toLowerCase()}" onclick="openCat(${i})"><b>${i+1}. ${esc(x.name)}</b><span class="muted">${x.items.length} позиций</span></div>`).join("")}</div>`;
+}
+function filterCats(v){document.querySelectorAll(".cat").forEach(e=>e.style.display=e.dataset.name.includes(v.toLowerCase())?"block":"none")}
+function openCat(i){currentCat=i;render()}
+function items(c){
+ const cat=price[currentCat];
+ c.innerHTML=`<div class="actions no-print"><button class="btn secondary" onclick="currentCat=null;render()">← Все разделы</button><input class="search" style="max-width:360px" placeholder="Поиск по услугам..." oninput="filterItems(this.value)"><button class="btn blue" onclick="go('Управление прайсом')">Редактировать</button></div>
+ <div class="card" style="margin-top:14px"><div class="section-head"><div class="section-title">${currentCat+1}. ${esc(cat.name)}</div><span class="muted">${cat.items.length} позиций</span></div>
+ <div id="items">${cat.items.length?cat.items.map((x,i)=>{const selected=estimate.find(e=>e.name===x[0]&&e.unit===x[1]&&Number(e.price)===Number(x[2]));const q=selected?Number(selected.qty)||0:0;return `<div class="price-item" data-name="${esc(x[0]).toLowerCase()}"><div><b>${esc(x[0])}</b></div><div>${esc(x[1])}</div><div>${money(x[2])} ₽</div><div class="qty-control"><button class="qty-btn" onclick="changePriceQty(${currentCat},${i},-1)">−</button><input class="qty-number" id="pq-${currentCat}-${i}" type="number" min="0" value="${q}" inputmode="numeric" onchange="setPriceQty(${currentCat},${i},this.value)"><button class="qty-btn" onclick="changePriceQty(${currentCat},${i},1)">+</button></div></div>`}).join(""):`<div class="empty">В этом разделе пока нет позиций.</div>`}</div></div>`;
+}
+function filterItems(v){document.querySelectorAll("#items .price-item").forEach(e=>e.style.display=e.dataset.name.includes(v.toLowerCase())?"grid":"none")}
+function changePriceQty(ci,ii,delta){const el=document.getElementById(`pq-${ci}-${ii}`);if(!el)return;const q=Math.max(0,(Number(el.value)||0)+delta);el.value=q;setPriceQty(ci,ii,q)}
+function setPriceQty(ci,ii,value){const x=price[ci].items[ii];const q=Math.max(0,Number(value)||0);const existing=estimate.find(e=>e.name===x[0]&&e.unit===x[1]&&Number(e.price)===Number(x[2]));if(q===0){if(existing)estimate=estimate.filter(e=>e!==existing);}else if(existing){existing.qty=q;}else{estimate.push({section:price[ci].name,name:x[0],unit:x[1],price:Number(x[2]),qty:q});}if(existing)existing.section=price[ci].name;saveEstimate();render();}
+function showToast(msg){let t=document.getElementById('toast');if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;left:50%;bottom:78px;transform:translateX(-50%);background:#27c45a;color:#fff;padding:12px 16px;border-radius:10px;font-weight:700;z-index:50;box-shadow:0 8px 25px #0008';document.body.appendChild(t)}t.textContent=msg;t.style.display='block';clearTimeout(window.__toast);window.__toast=setTimeout(()=>t.style.display='none',1600)}
+function calc(c){
+ const total=estimate.reduce((s,x)=>s+x.qty*x.price,0);
+ c.innerHTML=`<div class="row"><div class="card"><h3>Добавление позиции</h3><p class="muted">Выбирай услуги в разделе «Прайс».</p><button class="btn" onclick="go('Прайс')">Открыть прайс</button></div><div class="card"><h3>Итого</h3><div class="stat">${money(total)} ₽</div></div></div>
+ <div class="card" style="margin-top:14px;overflow-x:auto"><table class="table"><thead><tr><th>№</th><th>Раздел</th><th>Позиция</th><th>Ед.</th><th>Кол-во</th><th>Цена за 1</th><th>Сумма</th><th></th></tr></thead><tbody>${estimate.length?estimate.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.section||"")}</td><td><b>${esc(x.name)}</b></td><td>${esc(x.unit)}</td><td><div class="estimate-qty"><button class="qty-btn no-print" onclick="changeEstimateQty(${i},-1)">−</button><input class="qty-number" type="number" min="1" value="${x.qty}" onchange="qty(${i},this.value)"><button class="qty-btn no-print" onclick="changeEstimateQty(${i},1)">+</button></div></td><td>${money(x.price)} ₽</td><td><b>${money(x.qty*x.price)} ₽</b></td><td><button class="btn danger" onclick="del(${i})">Удалить</button></td></tr>`).join(""):`<tr><td colspan="8" class="empty">Расчёт пуст. Открой «Прайс» и добавь позиции.</td></tr>`}</tbody></table>
+ <div class="actions no-print" style="margin-top:15px"><button class="btn secondary" onclick="estimate=[];saveEstimate();render()">Очистить</button><button class="btn" onclick="window.print()">Печать</button></div></div>`;
+}
+function qty(i,v){estimate[i].qty=Math.max(1,Number(v)||1);saveEstimate();render()}
+function changeEstimateQty(i,delta){if(!estimate[i])return; estimate[i].qty=Math.max(1,(Number(estimate[i].qty)||1)+delta); saveEstimate(); render()}
+function setEstimateQtyFromOrders(i,v){if(!estimate[i])return;const q=Math.max(1,parseInt(v,10)||1);estimate[i].qty=q;saveEstimate();render()}
+function changeEstimateQtyFromOrders(i,delta){if(!estimate[i])return;estimate[i].qty=Math.max(1,(parseInt(estimate[i].qty,10)||1)+delta);saveEstimate();render()}
+function del(i){estimate.splice(i,1);saveEstimate();render()}
+function saveOrderForm(){
+  if(!account)return;
+  const data={client:document.getElementById("client")?.value||"",phone:document.getElementById("phone")?.value||"",address:document.getElementById("address")?.value||"",date:document.getElementById("date")?.value||"",comment:document.getElementById("comment")?.value||""};
+  localStorage.setItem(userDataKey(),JSON.stringify(data));
+}
+function restoreOrderForm(){
+  if(!account)return;
+  try{
+    const d=JSON.parse(localStorage.getItem(userDataKey())||"{}");
+    ["client","phone","address","date","comment"].forEach(id=>{const el=document.getElementById(id);if(el&&d[id]!=null)el.value=d[id]});
+  }catch(e){}
+}
+function orders(c){
+ const total=estimate.reduce((s,x)=>s+x.qty*x.price,0);
+ const rows=estimate.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(x.section||"")}</td><td><b>${esc(x.name)}</b></td><td>${esc(x.unit)}</td><td><span class="print-qty">${x.qty}</span><span class="no-print estimate-qty"><button class="qty-btn" type="button" onclick="changeEstimateQtyFromOrders(${i},-1)">−</button><input class="qty-number" type="number" min="1" value="${x.qty}" onchange="setEstimateQtyFromOrders(${i},this.value)"><button class="qty-btn" type="button" onclick="changeEstimateQtyFromOrders(${i},1)">+</button></span></td><td>${money(x.price)} ₽</td><td><b>${money(x.qty*x.price)} ₽</b></td><td class="no-print"><button class="estimate-delete" type="button" title="Удалить позицию" onclick="del(${i})">×</button></td></tr>`).join("");
+ c.innerHTML=`<div class="card print-estimate">
+ <div class="estimate-print-head"><h2>СМЕТА НА ЭЛЕКТРОМОНТАЖНЫЕ РАБОТЫ</h2><p>Электрик Мурад</p></div>
+ <div class="row no-print"><div class="card"><h3>Информация о заказе</h3><input id="client" placeholder="ФИО заказчика"><br><br><input id="phone" placeholder="Телефон"><br><br><input id="address" placeholder="Адрес"><br><br><input id="date" type="date"><br><br><textarea id="comment" placeholder="Комментарий" rows="4"></textarea></div></div>
+ <div class="estimate-info print-only"><div><b>Заказчик:</b> <span id="print-client">—</span></div><div><b>Телефон:</b> <span id="print-phone">—</span></div><div><b>Адрес:</b> <span id="print-address">—</span></div><div><b>Дата:</b> <span id="print-date">—</span></div></div>
+ <h3>Выбранные работы и материалы</h3>
+ <div class="table-wrap"><table class="table estimate-table"><thead><tr><th>№</th><th>Раздел</th><th>Позиция</th><th>Ед.</th><th>Количество</th><th>Цена за 1</th><th>Сумма</th><th class="no-print">Действие</th></tr></thead><tbody>${rows||`<tr><td colspan="8" class="empty">Смета пока пустая. Откройте «Прайс» и выберите работы.</td></tr>`}</tbody>${estimate.length?`<tfoot><tr><td colspan="6" style="text-align:right"><b>ИТОГО:</b></td><td><b>${money(total)} ₽</b></td></tr></tfoot>`:""}</table></div>
+ <div class="total estimate-total">Итого: ${money(total)} ₽</div>
+ <div class="actions no-print"><button class="btn green" onclick="saveOrder()">Сохранить заказ</button><button class="btn secondary" onclick="window.print()">Печать сметы</button></div>
+ </div>`;
+ const bind=(id,printId)=>{const el=document.getElementById(id), out=document.getElementById(printId);if(el&&out){const f=()=>out.textContent=el.value||"—";el.addEventListener("input",f);el.addEventListener("change",f);f();}};
+ bind("client","print-client");bind("phone","print-phone");bind("address","print-address");bind("date","print-date");
+ restoreOrderForm();
+ ["client","phone","address","date","comment"].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener("input",saveOrderForm)});
+}
+function saveOrder(){saveOrderForm();saveEstimate();alert("Заказ и все данные сохранены в браузере для этого аккаунта") }
+function panels(c){c.innerHTML=`<div class="grid">${["24 модуля","36 модулей","54 модуля","72 модуля","96 модулей"].map(x=>`<div class="card"><div class="stat">⚡</div><h3>Щит на ${x}</h3><p class="muted">Место для схемы, состава аппаратов и примечаний.</p><button class="btn secondary" onclick="alert('Раздел щита: ${x}')">Открыть</button></div>`).join("")}</div>`}
+function materials(c){c.innerHTML=`<div class="grid">${["Гильзы ГМЛ","Наконечники НШВИ","Клеммы","DIN-рейка","Гофра","Крепёж","Маркировка","Расходники"].map(x=>`<div class="card"><h3>${x}</h3><p class="muted">Материалы для электромонтажа</p></div>`).join("")}</div>`}
+function checklist(c){let a=["Обесточить линию","Проверить отсутствие напряжения","Проверить сечение кабеля","Проверить PE/N","Проверить затяжку клемм","Проверить УЗО/дифзащиту","Проверить маркировку","Сделать фото готового монтажа"];c.innerHTML=`<div class="card"><h3>Чек-лист перед сдачей работы</h3>${a.map(x=>`<label style="display:block;padding:13px;border-bottom:1px solid #333"><input type="checkbox"> ${x}</label>`).join("")}</div>`}
+
+function editor(c){
+ c.innerHTML=`<div class="actions no-print" style="margin-bottom:14px"><button class="btn green" onclick="addSection()">➕ Добавить новый раздел</button><button class="btn secondary" onclick="resetPrice()">↺ Вернуть исходный прайс</button></div>
+ <div class="hint">Здесь можно полностью менять прайс: добавлять разделы, услуги, цены и единицы измерения. Изменения сохраняются автоматически в этом браузере.</div>
+ <div style="margin-top:14px">${price.map((cat,ci)=>`<div class="card editor-section"><div class="section-head"><div><span class="section-title">${ci+1}. ${esc(cat.name)}</span><div class="muted">${cat.items.length} позиций</div></div><div class="actions no-print"><button class="btn secondary" onclick="renameSection(${ci})">Переименовать</button><button class="btn danger" onclick="removeSection(${ci})">Удалить раздел</button></div></div>
+ <div style="margin-top:12px">${cat.items.map((x,ii)=>`<div class="editor-service"><input value="${attr(x[0])}" onchange="editItem(${ci},${ii},0,this.value)"><input value="${attr(x[1])}" onchange="editItem(${ci},${ii},1,this.value)"><input type="number" value="${Number(x[2])}" onchange="editItem(${ci},${ii},2,this.value)"><div class="item-actions no-print"><button class="btn danger" onclick="removeItem(${ci},${ii})">Удалить</button></div></div>`).join("")}</div>
+ <div class="actions no-print" style="margin-top:12px"><button class="btn blue" onclick="addItemEditor(${ci})">➕ Добавить услугу</button></div></div>`).join("")}</div>`;
+}
+function addSection(){const name=prompt("Название нового раздела:");if(!name||!name.trim())return;price.push({name:name.trim(),items:[]});savePrice();render()}
+function renameSection(i){const name=prompt("Новое название раздела:",price[i].name);if(name&&name.trim()){price[i].name=name.trim();savePrice();render()}}
+function removeSection(i){if(!confirm("Удалить раздел и все его услуги?"))return;price.splice(i,1);savePrice();render()}
+function addItemEditor(ci){const name=prompt("Название услуги:");if(!name||!name.trim())return;const unit=prompt("Единица измерения:","шт");if(!unit||!unit.trim())return;const val=prompt("Цена:","0");const n=Number(val);price[ci].items.push([name.trim(),unit.trim(),isNaN(n)?0:n]);savePrice();render()}
+function editItem(ci,ii,col,val){if(col===2)price[ci].items[ii][col]=Number(val)||0;else price[ci].items[ii][col]=val;savePrice()}
+function removeItem(ci,ii){if(!confirm("Удалить эту услугу?"))return;price[ci].items.splice(ii,1);savePrice();render()}
+function resetPrice(){if(!confirm("Вернуть исходный прайс? Все внесённые вручную изменения будут удалены."))return;price=JSON.parse(JSON.stringify(initialPrice));savePrice();render()}
+function money(n){return Number(n||0).toLocaleString("ru-RU")}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function attr(s){return esc(s)}
+go("Главная");
+</script>
+<script>
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.protocol === 'http:')) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>
+
